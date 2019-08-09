@@ -1,0 +1,7 @@
+
+include "application"
+include "gateway"
+include "datebase"
+
+rootProject.name = 'testspringboot'
+
