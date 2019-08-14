@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    password: 123456
+    username: testweb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://36.99.34.144:7710/testweb?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      #监控统计拦截的filters
+      filters: stat,wall,log4j,config
+      driverClassName: com.mysql.jdbc.Driver
+      #基本属性
+#      url: jdbc:mysql://127.0.0.1:3306/mytest?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+#      username: root
+#      password: root
+      #配置初始化大小/最小/最大
+      initialSize: 1
+      minIdle: 1
+      maxActive: 20
+      #获取连接等待超时时间
+      maxWait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      timeBetweenEvictionRunsMillis: 60000
+      #一个连接在池中最小生存的时间
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
+      poolPreparedStatements: false
+      maxPoolPreparedStatementPerConnectionSize: 20
+## 该配置节点为独立的节点，有很多同学容易将这个配置放在spring的节点下，导致配置无法被识别
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  typeAliasesPackage: com.likai.database.model
+  configLocation:
+
+
