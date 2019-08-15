@@ -21,6 +21,8 @@ public class DatebaseApplicationTests {
     public void contextLoads() {
         List<User> userList = userService.query_all();
         System.out.println(userList);
+        List<User> userList1 = userService.query_all_ss();
+        System.out.println(userList);
     }
 
 }

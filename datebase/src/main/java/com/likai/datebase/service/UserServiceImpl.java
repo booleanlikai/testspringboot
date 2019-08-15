@@ -19,4 +19,8 @@ public class UserServiceImpl implements UserService {
     public List<User> query_all() {
         return userMapper.selectAll();
     }
+
+    public List<User> query_all_ss() {
+        return userMapper.selectAll_s();
+    }
 }

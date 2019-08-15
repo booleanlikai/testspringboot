@@ -1,40 +1,44 @@
 spring:
   datasource:
-    password: 123456
-    username: testweb
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://36.99.34.144:7710/testweb?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL
-    type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      #监控统计拦截的filters
-      filters: stat,wall,log4j,config
-      driverClassName: com.mysql.jdbc.Driver
-      #基本属性
-#      url: jdbc:mysql://127.0.0.1:3306/mytest?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
-#      username: root
-#      password: root
-      #配置初始化大小/最小/最大
-      initialSize: 1
-      minIdle: 1
-      maxActive: 20
-      #获取连接等待超时时间
-      maxWait: 60000
-      #间隔多久进行一次检测，检测需要关闭的空闲连接
-      timeBetweenEvictionRunsMillis: 60000
-      #一个连接在池中最小生存的时间
-      minEvictableIdleTimeMillis: 300000
-      validationQuery: SELECT 'x'
-      testWhileIdle: true
-      testOnBorrow: false
-      testOnReturn: false
-      #打开PSCache，并指定每个连接上PSCache的大小。oracle设为true，mysql设为false。分库分表较多推荐设置为false
-      poolPreparedStatements: false
-      maxPoolPreparedStatementPerConnectionSize: 20
-## 该配置节点为独立的节点，有很多同学容易将这个配置放在spring的节点下，导致配置无法被识别
+      master:
+        url: jdbc:mysql://36.99.34.144:7710/testweb?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL
+        username: testweb
+        password: 123456
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        initial-size: 1   #初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
+        max-active: 9  #最大连接池数量
+        min-idle: 0  #最小连接池数量
+        max-wait: 6000 #获取连接时最大等待时间，单位毫秒。配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，如果需要可以通过配置useUnfairLock属性为true使用非公平锁。
+        pool-prepared-statements: false #是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
+        max-pool-prepared-statement-per-connection-size: -1 #要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
+        validation-query: select 'x'  #用来检测连接是否有效的sql，要求是一个查询语句，常用select 'x'。如果validationQuery为null，testOnBorrow、testOnReturn、testWhileIdle都不会起作用。
+        validation-query-timeout: 10 #单位：秒，检测连接是否有效的超时时间。底层调用jdbc Statement对象的void setQueryTimeout(int seconds)方法
+        test-on-borrow: true #申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+        test-on-return: false #归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+        test-while-idle: false #建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+        keep-alive: false  #连接池中的minIdle数量以内的连接，空闲时间超过minEvictableIdleTimeMillis，则会执行keepAlive操作。
+#        属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：
+#        监控统计用的filter:stat
+#        日志用的filter:log4j
+#        防御sql注入的filter:wall
+        filters: stat,wall
+
+#        time-between-eviction-runs-millis:
+#          #有两个含义：
+#          #1) Destroy线程会检测连接的间隔时间，如果连接空闲时间大于等于minEvictableIdleTimeMillis则关闭物理连接。
+#          #2) testWhileIdle的判断依据，详细看testWhileIdle属性的说明
+#        min-evictable-idle-time-millis:
+#        max-evictable-idle-time-millis:
+
+
 
 mybatis:
-  mapperLocations: classpath:mapper/*.xml
+  mapperLocations: classpath*:mybatis/mapper/*.xml
   typeAliasesPackage: com.likai.database.model
   configLocation:
+
+
+
 
 

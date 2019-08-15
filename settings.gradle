@@ -2,6 +2,8 @@
 include "application"
 include "gateway"
 include "datebase"
+include "serviceproxy"
+include "api"
 
 rootProject.name = 'testspringboot'
 
