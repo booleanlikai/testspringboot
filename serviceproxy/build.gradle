@@ -18,4 +18,6 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-spring-boot-starter
     compile group: 'org.apache.dubbo', name: 'dubbo-spring-boot-starter', version: '2.7.3'
+
+    compile project(':api')
 }
