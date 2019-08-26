@@ -1,10 +1,10 @@
-
 dubbo:
   application:
     name: doubbo-consumer
   protocol:
     name: dubbo
     port: 20880
+    server: netty4
   registry:
     address: nacos://58.49.160.90:8848
   provider:

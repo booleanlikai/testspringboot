@@ -1,20 +1,17 @@
-
 dubbo:
   application:
     version: 1.0.0
   protocol:
     name: dubbo
     port: 20880
+    server: netty4
   registry:
     address: nacos://58.49.160.90:8848
   provider:
     timeout: 1000
 
-
 server:
   port: 9000
-
-
 
 spring:
   application:
@@ -43,7 +40,6 @@ spring:
         #        日志用的filter:log4j
         #        防御sql注入的filter:wall
         filters: stat,wall
-
 #        time-between-eviction-runs-millis:
 #          #有两个含义：
 #          #1) Destroy线程会检测连接的间隔时间，如果连接空闲时间大于等于minEvictableIdleTimeMillis则关闭物理连接。
@@ -51,12 +47,15 @@ spring:
 #        min-evictable-idle-time-millis:
 #        max-evictable-idle-time-millis:
 
-
-
 mybatis:
   mapperLocations: classpath*:mybatis/mapper/*.xml
   typeAliasesPackage: com.likai.database.model
   configLocation:
+
+
+nacos:
+   config:
+    server-addr: 58.49.160.90:8848
 
 
 

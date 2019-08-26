@@ -23,6 +23,7 @@ apply plugin: 'io.spring.dependency-management'
 //apply plugin: "com.arenagod.gradle.MybatisGenerator"
 apply plugin: "com.thinkimi.gradle.MybatisGenerator"
 
+jar.enabled=true
 
 group = 'com.likai'
 version = '0.0.1-SNAPSHOT'
@@ -70,3 +71,4 @@ mybatisGenerator {
         mybatisGenerator  // Here add your mariadb dependencies or else
     }
 }
+
