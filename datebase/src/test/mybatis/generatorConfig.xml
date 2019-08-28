@@ -27,7 +27,7 @@
 
 
 
-        <javaModelGenerator targetPackage="com.likai.datebase.model"
+        <javaModelGenerator targetPackage="com.likai.api.model"
                             targetProject="E:/GitHubProject/testspringrestful/testspringrestful/testspringboot/datebase/src/main/java">
             <property name="constructorBased" value="true"/>
             <property name="enableSubPackages" value="true"/>

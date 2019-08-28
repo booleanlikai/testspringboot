@@ -1,6 +1,6 @@
 package com.likai.datebase.service.impl;
 
-import com.likai.datebase.model.User;
+import com.likai.api.model.User;
 
 import java.util.List;
 

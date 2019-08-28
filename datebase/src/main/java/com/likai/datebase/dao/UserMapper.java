@@ -1,11 +1,9 @@
 package com.likai.datebase.dao;
 
-import com.likai.datebase.model.User;
+import com.likai.api.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

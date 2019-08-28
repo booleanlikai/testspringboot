@@ -1,6 +1,6 @@
 package com.likai.datebase;
 
-import com.likai.datebase.model.User;
+import com.likai.api.model.User;
 import com.likai.datebase.service.UserServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,8 +1,14 @@
-package com.likai.datebase.model;
+package com.likai.api.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+@XmlRootElement(name = "root")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class User implements Serializable {
     private Long id;
 
     private String createby;
@@ -415,5 +421,11 @@ public class User {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    @Override
+    public String toString() {
+        String s=this.username+"-";
+        return s+super.toString();
     }
 }

@@ -1,7 +1,7 @@
 package com.likai.serviceproxy.bussiness.impl;
 
 
-import com.likai.datebase.model.User;
+import com.likai.api.model.User;
 
 import com.likai.datebase.service.UserServiceImpl;
 import com.likai.serviceproxy.bussiness.UserBussiness;
